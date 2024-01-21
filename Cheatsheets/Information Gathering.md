@@ -7,7 +7,7 @@ whois megacorpone.com -h 192.168.50.251
 whois 38.100.193.70 -h 192.168.50.251
 ```
 ## Active Information Gathering
-[[NOTES#Active Information Gathering]]
+[[Notes/Information Gathering#Active Information Gathering]]
 ### DNS Enumeration
 TAGS: #ActiveRecon #DNS #Enumeration 
 ```bash
@@ -272,3 +272,25 @@ iso.3.6.1.2.1.6.13.1.3.0.0.0.0.88.0.0.0.0.0 = INTEGER: 88
 iso.3.6.1.2.1.6.13.1.3.0.0.0.0.5985.0.0.0.0.0 = INTEGER: 5985
 ```
 ---
+## Extra
+### Vulnerability scanning with Nmap
+#nmap #vunlerability-scanning #NSE
+
+```bash
+# go to the NSE locatoin
+cd /usr/share/nmap/scripts/
+# search for "vuln" scripts
+cat script.db  | grep "\"vuln\""
+# using the script
+sudo nmap -sV -p 443 --script "vuln" 192.168.50.124
+
+# use external NSE scripts
+# search fo CVE- script and copy it to the nmap NSE folder
+sudo cp /home/kali/Downloads/http-vuln-cve-2021-41773.nse /usr/share/nmap/scripts/http-vuln-cve2021-41773.nse
+# update the db
+sudo nmap --script-updatedb
+# utilize the NSE script
+sudo nmap -sV -p 443 --script "http-vuln-cve2021-41773" 192.168.50.124
+
+
+```
