@@ -115,12 +115,13 @@ Test-NetConnection -Port 445 192.168.50.151
 
 ## SMB Enumeration
 TAGS: #smb 
+[[Notes/Information Gathering#SMB|SMB-Notes]]
 ```bash
 # nmap scan for NetBIOS service
 nmap -v -p 139,445 -oG smb.txt 192.168.50.1-254
 
 # nbt-scan to collect additional NetBIOS info
-sudo nbtscan -r 192.168.50.0/24
+sudo nbtscan -r 192.168.50.0/24  #NBT Scan use -r
 
 # NSE scripts
 ls -1 /usr/share/nmap/scripts/smb*
