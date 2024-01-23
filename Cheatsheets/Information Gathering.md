@@ -134,6 +134,8 @@ nmap -v -p 139,445 --script smb-os-discovery 192.168.50.152
 # net view to list remote shares
 net view \\dc01 /all
 ```
+
+- *The SMB discovery script works only if SMBv1 is enabled on the target, which is not the default case on modern versions of Windows. However, plenty of legacy systems are still running SMBv1, and we have enabled this specific version on the Windows host to simulate such a scenario.*
 ---
 ## SMTP Enumeration
 TAGS: #SMTP #script #telnet
