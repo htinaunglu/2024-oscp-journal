@@ -133,6 +133,8 @@ nmap -v -p 139,445 --script smb-os-discovery 192.168.50.152
 # net view to list remote shares
 net view \\dc01 /all
 ```
+
+- *The SMB discovery script works only if SMBv1 is enabled on the target, which is not the default case on modern versions of Windows. However, plenty of legacy systems are still running SMBv1, and we have enabled this specific version on the Windows host to simulate such a scenario.*
 ---
 ## SMTP Enumeration
 TAGS: #SMTP #script #telnet
@@ -291,6 +293,4 @@ sudo cp /home/kali/Downloads/http-vuln-cve-2021-41773.nse /usr/share/nmap/script
 sudo nmap --script-updatedb
 # utilize the NSE script
 sudo nmap -sV -p 443 --script "http-vuln-cve2021-41773" 192.168.50.124
-
-
 ```
