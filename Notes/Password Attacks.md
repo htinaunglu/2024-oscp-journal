@@ -13,3 +13,25 @@ As with any dictionary attack, this generates a lot of noise and many events. If
 
 ## Some Points
 - It's worth noting that the format of the username also suggests that the company may use the first name of the user for account names. This information may assist us in later information gathering attempts.
+
+## Cryptography, Encryption, and Password Cracking
+
+**Encryption:**
+- Encryption is a two-way function involving scrambling (encryption) and unscrambling (decryption) data with at least one key.
+- Symmetric encryption uses the same key for both encryption and decryption, posing a security risk if intercepted during key exchange.
+- Advanced Encryption Standard (AES) is an example of a symmetric encryption algorithm.
+- Asymmetric encryption uses distinct key pairs (private and public keys) for encryption and decryption.
+- Rivest–Shamir–Adleman (RSA) is a common asymmetric encryption algorithm.
+
+**Hashing:**
+- Hashing involves running variable-sized input data through a hash algorithm, resulting in a fixed-length hexadecimal value.
+- Cryptographic hash functions, like MD5 and SHA1, are commonly used in information security.
+- Hashing is utilized to secure passwords; user passwords are hashed and stored in databases.
+- Hashing is a one-way function, making it challenging to retrieve plaintext from the hash.
+- Password cracking involves decrypting encrypted passwords or determining plaintext from hashed passwords.
+
+**Use in Information Security:**
+- Hashing is employed to secure passwords in databases, ensuring plaintext passwords are not accessible.
+- During a login attempt, the entered password is hashed and compared to the stored hashed value in the database.
+- Password cracking attacks are performed to decrypt encrypted passwords or determine plaintext from hashed passwords.
+- Password cracking is often executed on dedicated systems in parallel with other activities during penetration tests.
