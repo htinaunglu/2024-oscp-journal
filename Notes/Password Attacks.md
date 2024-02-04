@@ -9,5 +9,7 @@ While there are many modern approaches to user account and service authenticatio
 - may fail if the actual password is not in the list.
 - time is significantly faster than brute-force attacks ( based on the size of wordlist)
 
+As with any dictionary attack, this generates a lot of noise and many events. If installed, a _Web Application Firewall_ (WAF) would block this activity quickly. Other brute force protection applications could also block this, such as _fail2ban_, which locks a user out after a set number of failed login attempts. However, web services aren't often afforded this type of protection, making this is a highly effective vector against those targets.
+
 ## Some Points
 - It's worth noting that the format of the username also suggests that the company may use the first name of the user for account names. This information may assist us in later information gathering attempts.
