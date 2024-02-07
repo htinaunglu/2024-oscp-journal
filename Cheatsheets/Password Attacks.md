@@ -40,6 +40,7 @@ hashcat.exe -b
 ```
 
 ## Wordlist mutation
+USEFUL LINK : https://hashcat.net/wiki/doku.php?id=rule_based_attack
 ```shell
 # remove lines start with "1", -i instantanious /^1 start with "1", /d delete
 sed -i '/^1/d' wordlist.txt
