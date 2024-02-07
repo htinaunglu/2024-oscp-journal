@@ -35,3 +35,13 @@ As with any dictionary attack, this generates a lot of noise and many events. If
 - During a login attempt, the entered password is hashed and compared to the stored hashed value in the database.
 - Password cracking attacks are performed to decrypt encrypted passwords or determine plaintext from hashed passwords.
 - Password cracking is often executed on dedicated systems in parallel with other activities during penetration tests.
+
+The process of cracking a hash involves several key steps:
+
+1. **Hash Extraction:** Obtain hashes from various sources, such as a database system during a penetration test.
+2. **Hash Formatting:** Identify the hashing algorithm and format the hashes for the cracking tool. Use tools like hash-identifier or hash-id on Kali to determine hash types.
+3. **Cracking Time Calculation:** Evaluate the feasibility of the cracking attempt by considering the key-space, hash rate, and expected lifetime. Adjust the approach if the cracking time is too long.
+4. **Wordlist Preparation:** Modify the wordlist and employ a rule-based attack, considering password policies, online leak sites, and other password vectors for a comprehensive approach.
+5. **Hash Attack:** Start the cracking process with careful consideration of hash type and accuracy in copying and pasting hashes to avoid errors that could compromise efforts.
+
+	Maintaining focus and structure throughout the process is crucial for improving results in this potentially lengthy endeavor, and upcoming demonstrations will reinforce key aspects of the methodology.
