@@ -66,3 +66,22 @@ ls -la /usr/share/hashcat/rules/
 ```
 
 # Working with Hashes
+
+```shell
+# identifying hashes
+hash-identifier
+
+Enter Hash : 
+
+# if it cannnot identify
+hashcat hash.txt
+
+The following 4 hash-modes match the structure of your input hash:
+
+      # | Name                                                       | Category
+  ======+============================================================+=================
+   3200 | bcrypt $2*$, Blowfish (Unix)                               | Operating System
+   #<SNIP>
+```
+
+
