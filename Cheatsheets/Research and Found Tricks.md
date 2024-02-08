@@ -7,3 +7,8 @@ cat smb.txt | grep open | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | awk '!a[$0]++
 # bash one liner for enum4linux on many ips.
 for ip in $(cat target_ips.txt); do enum4linux -a $ip; done
 ```
+
+```bash
+# when you can't connect to the RDP, this is due to the MTU size, try reducing it.
+sudo ip l s tun0 mtu 1280
+```
