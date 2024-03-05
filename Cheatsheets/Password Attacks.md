@@ -143,9 +143,3 @@ hashcat --help | grep -i "KeePass"
 hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force
 ```
 # Working with Hashes
-
-
-
-
-
-```
