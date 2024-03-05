@@ -65,7 +65,7 @@ ls -la /usr/share/hashcat/rules/
 
 ```
 
-# Working with Hashes
+## Cracking Methodology
 
 ```shell
 # identifying hashes
@@ -83,5 +83,30 @@ The following 4 hash-modes match the structure of your input hash:
    3200 | bcrypt $2*$, Blowfish (Unix)                               | Operating System
    #<SNIP>
 ```
+
+## Password Manager
+
+```powershell
+# search for the db file
+Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
+```
+
+```bash
+# keepass to JtR
+keepass2john Database.kdbx > keepass.hash
+# example hash
+cat keepass.hash
+Database:$keepass$*2*60*0*d74e29a727e9338717d27a7d457ba3486d20dec73a9db1a7fbc7a068c9aec6bd*04b0bfd787898d8dcd4d463ee768e55337ff001ddfac98c961219d942fb0cfba*5273cc73b9584fbd843d1ee309d2ba47*1dcad0a3e50f684510c5ab14e1eecbb63671acae14a77eff9aa319b63d71ddb9*17c3ebc9c4c3535689cb9cb501284203b7c66b0ae2fbf0c2763ee920277496c1
+# Eliminate the database, just store the hash as hash
+
+# look for the mode
+hashcat --help | grep -i "KeePass"
+
+# Crackin' time
+hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force
+```
+# Working with Hashes
+
+
 
 

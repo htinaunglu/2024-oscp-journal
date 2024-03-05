@@ -36,6 +36,14 @@ As with any dictionary attack, this generates a lot of noise and many events. If
 - Password cracking attacks are performed to decrypt encrypted passwords or determine plaintext from hashed passwords.
 - Password cracking is often executed on dedicated systems in parallel with other activities during penetration tests.
 
+## Cracking methodology
+```shell
+1. Extract hashes
+2. Format hashes
+3. Calculate the cracking time
+4. Prepare wordlist
+5. Attack the hash
+```
 The process of cracking a hash involves several key steps:
 
 1. **Hash Extraction:** Obtain hashes from various sources, such as a database system during a penetration test.
