@@ -11,9 +11,15 @@ for ip in $(cat target_ips.txt); do enum4linux -a $ip; done
 ```bash
 # when you can't connect to the RDP, this is due to the MTU size, try reducing it.
 sudo ip l s tun0 mtu 1280
+
+## REF
+# https://github.com/FreeRDP/FreeRDP/issues/6814
 ```
 
+<<<<<<< HEAD
 ```shell
 # RDP for copying and file transfer
 xfreerdp /v:$TARGET /u:$USERNAME /p:$PASSWORD /dynamic-resolution +clipboard /drive:/home/path/of/tools
 ```
+=======
+>>>>>>> origin/master

