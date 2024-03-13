@@ -45,5 +45,16 @@ MySQL [mysql]> SELECT user, authentication_string FROM mysql.user WHERE user = '
 | offsec | $A$005$?qvorPp8#lTKH1j54xuw4C5VsXe5IAa1cFUYdQMiBxQVEzZG9XWd/e6     |
 +--------+---------------------------------------------------------------------+
 1 row in set (0.106 sec)
+```
+
+### MSSQL
+```bash
+# use impacket
+impacket-mssqlclient Administrator:Lab123@192.168.50.18 -windows-auth
+
+SQL> SELECT @@version;
+SQL> SELECT name FROM sys.databases;
+SQL> SELECT * FROM offsec.information_schema.tables;
+SQL> select * from offsec.dbo.users;
 
 ```
