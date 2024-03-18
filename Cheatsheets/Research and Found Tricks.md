@@ -26,3 +26,5 @@ xfreerdp /v:$TARGET /u:$USERNAME /p:$PASSWORD /dynamic-resolution +clipboard /dr
 # command to check which shell I am in
 (dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell
 ```
+
+MSSQL - [Portswigger](https://portswigger.net/support/sql-injection-in-the-query-structure)

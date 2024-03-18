@@ -137,3 +137,5 @@ $query = "SELECT * from customers WHERE name LIKE '".$_POST["search_input"]."%'"
 # from lab inside post request body, confirming the version
 mail-list=email.com' UNION SELECT @@version, @@version, @@version, @@version, @@version, @@version-- //
 ```
+
+
