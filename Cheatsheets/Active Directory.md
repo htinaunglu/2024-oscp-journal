@@ -80,3 +80,50 @@ $PDC = $domainObj.PdcRoleOwner.Name
 # Print the $PDC variable
 $PDC
 ```
+
+```powershell
+# Using ADSI to obtain DN
+([adsi]'').distinguishedName
+
+# OUTPUT
+DC=corp,DC=com
+```
+
+```powershell
+## enumeration_a3.ps1
+
+# Store the domain object in the $domainObj variable
+$domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+
+# Store the PdcRoleOwner name to the $PDC variable
+$PDC = $domainObj.PdcRoleOwner.Name
+
+# Store the Distinguished Name variable into the $DN variable
+$DN = ([adsi]'').distinguishedName
+
+# Print the $DN variable
+$DN
+```
+
+```powershell
+# full LDAP path script
+## enumeration_aFinal.ps1
+
+$PDC = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().PdcRoleOwner.Name
+$DN = ([adsi]'').distinguishedName 
+$LDAP = "LDAP://$PDC/$DN"
+$LDAP
+```
+
+```powershell
+# run
+.\enumeration_aFinal.ps1
+## OUTPUT
+LDAP://DC1.corp.com/DC=corp,DC=com
+```
+
+## Adding Search Functionality
+
+```powershell
+pass
+```
