@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"68a397047f163b89","type":"text","text":"**pete**","x":-220,"y":-140,"width":245,"height":50,"color":"6"},
+		{"id":"ab8cbd20c6885c57","type":"text","text":"**stephanie**","x":85,"y":-140,"width":245,"height":50,"color":"6"},
+		{"id":"36e31c5a45a38352","x":-220,"y":-300,"width":245,"height":50,"type":"text","text":"**Sales Departments**"},
+		{"id":"2f5a27dff0bd741b","type":"text","text":"**Management Department**","x":-575,"y":80,"width":280,"height":50},
+		{"id":"cd86af19642772ce","type":"text","text":"**dave**","x":-140,"y":80,"width":245,"height":50,"color":"6"},
+		{"id":"d6f7bc63b1f9c528","type":"text","text":"**Development Department**","x":-660,"y":-140,"width":285,"height":50},
+		{"id":"973d170b21c0f38c","type":"text","text":"**jen**","x":-557,"y":260,"width":245,"height":50,"color":"6"}
+	],
+	"edges":[
+		{"id":"c073497ff86417c4","fromNode":"36e31c5a45a38352","fromSide":"bottom","toNode":"d6f7bc63b1f9c528","toSide":"top"},
+		{"id":"f7c9c27116a7eb18","fromNode":"36e31c5a45a38352","fromSide":"bottom","toNode":"68a397047f163b89","toSide":"top"},
+		{"id":"9dcacc7c6259ae09","fromNode":"36e31c5a45a38352","fromSide":"bottom","toNode":"ab8cbd20c6885c57","toSide":"top"},
+		{"id":"2d837b654ebad858","fromNode":"d6f7bc63b1f9c528","fromSide":"bottom","toNode":"2f5a27dff0bd741b","toSide":"top"},
+		{"id":"b0d027eced19cb72","fromNode":"d6f7bc63b1f9c528","fromSide":"bottom","toNode":"cd86af19642772ce","toSide":"top"},
+		{"id":"99de6414d5ef60ff","fromNode":"d6f7bc63b1f9c528","fromSide":"bottom","toNode":"68a397047f163b89","toSide":"left"},
+		{"id":"3490ce4e52043b66","fromNode":"2f5a27dff0bd741b","fromSide":"bottom","toNode":"973d170b21c0f38c","toSide":"top"}
+	]
+}

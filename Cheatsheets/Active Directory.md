@@ -122,7 +122,7 @@ $LDAP
 LDAP://DC1.corp.com/DC=corp,DC=com
 ```
 
-## Adding Search Functionality
+### Adding Search Functionality
 *DirectoryEntry*,*DirectorySearcher* in *System.DirectoryServices*
 
 ```powershell
@@ -165,6 +165,7 @@ LDAP://DC1.corp.com/CN=ObjectMoveTable,CN=FileLinks,CN=System,DC=corp,DC=com
 ...
 ```
 
+
 Filtering `$dirsearcher.filter` is needed in our script! Go for *samAccountType* (attribute applied to all user, computer and group objects)
 - start with 0x30000000 (decimal 805306368) for all user objects in the domain.
 
@@ -201,7 +202,8 @@ LDAP://DC1.corp.com/CN=pete,CN=Users,DC=corp,DC=com          {logoncount, codepa
 LDAP://DC1.corp.com/CN=jen,CN=Users,DC=corp,DC=com           {logoncount, codepage, objectcategory, dscorepropagatio
 ```
 
-When enumerating AD, we are very interested in the _attributes_ of each object, which are stored in the _Properties_ field.
+
+	When enumerating AD, we are very interested in the _attributes_ of each object, which are stored in the _Properties_ field.
 
 ```powershell
 ## enumeration_b3.ps1
@@ -268,7 +270,9 @@ accountexpires                 {9223372036854775807}
 
 ```
 
-Just an another way to filter more properties!
+
+	Just an another way to filter more properties!
+	
 ```powershell
 ## enumeration_b3i.ps1
 # Adding the name property to the filter and only print the "memberof" attribute in the nested loop
@@ -296,7 +300,8 @@ CN=Domain Admins,CN=Users,DC=corp,DC=com
 CN=Administrators,CN=Builtin,DC=corp,DC=com
 ```
 
-encapsulate the current functionality of the script into an actual function.
+
+	encapsulate the current functionality of the script into an actual function.
 
 ```powershell
 ## .\enumeration_b_func.ps1
@@ -329,7 +334,6 @@ Import-Module .\enumeration_b_func.ps1
 LDAPSearch -LDAPQuery "(samAccountType=805306368)"
 ```
 
-**objectClass=group**
 
 ```powershell
 # Searching groups
@@ -339,12 +343,29 @@ LDAPSearch -LDAPQuery "(objectclass=group)"
 
 
 ```powershell
+# Using "foreach" to iterate through the objects in $group variable
 
+foreach ($group in $(LDAPSearch -LDAPQuery "(objectCategory=group)")) {
+>> $group.properties | select {$_.cn}, {$_.member}
+>> }
 ```
 
 ```powershell
+# Adding the search to our variable called $sales
+$sales = LDAPSearch -LDAPQuery "(&(objectCategory=group)(cn=Sales Department))"
+
+# print
+$sales.properties.member
+
+# OUTPUT
+CN=Development Department,DC=corp,DC=com
+CN=pete,CN=Users,DC=corp,DC=com
+CN=stephanie,CN=Users,DC=corp,DC=com
 
 ```
+
+Nested groups
+[[AD Nested Groups.canvas|AD Nested Groups]]
 
 ```powershell
 
