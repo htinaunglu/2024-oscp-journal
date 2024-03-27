@@ -358,22 +358,38 @@ $sales = LDAPSearch -LDAPQuery "(&(objectCategory=group)(cn=Sales Department))"
 $sales.properties.member
 
 # OUTPUT
-CN=Development Department,DC=corp,DC=com
+CN=Development Department,DC=corp,DC=com  # <--- This ONE, group inside group
 CN=pete,CN=Users,DC=corp,DC=com
 CN=stephanie,CN=Users,DC=corp,DC=com
 
 ```
 
-Nested groups
-[[AD Nested Groups.canvas|AD Nested Groups]]
 
 ```powershell
+# Explore More
+$group = LDAPSearch -LDAPQuery "(&(objectCategory=group)(cn=Development Department*))"
 
+# print
+$group.properties.member
+
+# OUTPUT
+CN=Management Department,DC=corp,DC=com
+CN=pete,CN=Users,DC=corp,DC=com
+CN=dave,CN=Users,DC=corp,DC=com
 ```
 
 ```powershell
+# More and more
+$group = LDAPSearch -LDAPQuery "(&(objectCategory=group)(cn=Management Department*))"
 
+# print
+$group.properties.member
+
+# OUTPUT
+CN=jen,CN=Users,DC=corp,DC=com
 ```
+
+Above 3 blocks shows you [[AD Nested Groups.canvas|AD Nested Groups]] 
 
 ```powershell
 
