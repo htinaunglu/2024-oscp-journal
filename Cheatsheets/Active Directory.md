@@ -424,10 +424,10 @@ Above 3 blocks shows you [[AD Nested Groups.canvas|AD Nested Groups]]
 ```
 
 ```powershell
-
+"Cloneable Domain Controllers","Debug","Development Department","DnsUpdateProxy","Domain Admins","Domain Computers","Domain Controllers","Domain Guests","Domain Users","Enterprise Admins","Enterprise Key Admins","Enterprise Read-only Domain Controllers","Group Policy Creator Owners","Key Admins","Management Department","Protected Users","Read-only Domain Controllers","Sales Department","Schema Admins"
 ```
 
 ```powershell
-
+"Administrator","dave","Guest","iis_service","jeff","jeffadmin","jen","krbtgt","pete","stephanie"
 ```
 
