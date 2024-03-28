@@ -1,3 +1,4 @@
+[[Notes/Active Directory|Active Directory]]
 ## Manual Enumeration
 ### Enumerate Active Directory using legacy Windows applications
 
@@ -512,22 +513,53 @@ Get-NetComputer
 Get-NetComputer | select operatingsystem,dnshostname
 ```
 
-*It's a good idea to grab this information early in the assessment to determine the relative age of the systems and to locate potentially weak targets*
+*It's a good idea to grab this information early in the assessment to determine the relative age of the systems and to locate potentially weak targets.*
+
+### Permissions and Logged on Users
+When an attacker or penetration tester improves access through multiple higher-level accounts to reach a goal, it is known as a _chained compromise_.
 
 ```powershell
+# Scanning domain, find local admin privilege of our user
+Find-LocalAdminAccess
 
+# OUTPUT
+client74.corp.com
 ```
 
 ```powershell
+# Checking logged on users with Get-NetSession
+Get-NetSession -ComputerName files04
 
+# Nothing comes up? Why? Real no logged in user or something else, try below
+Get-NetSession -ComputerName files04 -Verbose
+
+# OUTPUT
+VERBOSE: [Get-NetSession] Error: Access is denied
+```
+
+In a real world engagement, or in exam, we might accept that enumerating sessions with PowerView does not work and try to use a different tool.
+
+[[Notes/Active Directory#NetSessionEnum|NetSessionEnum]]
+
+```powershell
+# Displaying permissions on the DefaultSecurity registry hive
+Get-Acl -Path HKLM:SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\ | fl
+
+# OUTPUT
+Path   : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\
+Owner  : NT AUTHORITY\SYSTEM
+Group  : NT AUTHORITY\SYSTEM
+Access : BUILTIN\Users Allow  ReadKey
+         BUILTIN\Administrators Allow  FullControl
+         NT AUTHORITY\SYSTEM Allow  FullControl
+         CREATOR OWNER Allow  FullControl
+         APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES Allow  ReadKey
+         S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681 Allow  ReadKey
 ```
 
 ```powershell
-
-```
-
-```powershell
-
+# Querying operating system and version
+Get-NetComputer | select dnshostname,operatingsystem,operatingsystemversion
 ```
 
 ```powershell

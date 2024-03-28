@@ -10,7 +10,7 @@ This is my personal notes and. cheatsheets for OSCP attempt in early 2024.
 	- [[Research and Found Tricks]]
 	- [[SQL injection]]
 	- [[Cheatsheets/Password Attacks|Password Attacks]]
-	- [[Active Directory]]
+	- [[Cheatsheets/Active Directory]]
 - Notes
 	- [[Notes/Information Gathering|Information Gathering]]
 	- [[Notes/Password Attacks|Password Attacks]]
