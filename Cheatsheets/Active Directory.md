@@ -203,7 +203,7 @@ LDAP://DC1.corp.com/CN=jen,CN=Users,DC=corp,DC=com           {logoncount, codepa
 ```
 
 
-	When enumerating AD, we are very interested in the _attributes_ of each object, which are stored in the _Properties_ field.
+When enumerating AD, we are very interested in the _attributes_ of each object, which are stored in the _Properties_ field.
 
 ```powershell
 ## enumeration_b3.ps1
@@ -271,7 +271,7 @@ accountexpires                 {9223372036854775807}
 ```
 
 
-	Just an another way to filter more properties!
+Just an another way to filter more properties!
 	
 ```powershell
 ## enumeration_b3i.ps1
@@ -301,7 +301,7 @@ CN=Administrators,CN=Builtin,DC=corp,DC=com
 ```
 
 
-	encapsulate the current functionality of the script into an actual function.
+encapsulate the current functionality of the script into an actual function.
 
 ```powershell
 ## .\enumeration_b_func.ps1
@@ -339,7 +339,7 @@ LDAPSearch -LDAPQuery "(samAccountType=805306368)"
 # Searching groups
 LDAPSearch -LDAPQuery "(objectclass=group)"
 ```
-	ONE NOTE: script can get you more groups than net.exe, why? Because new.exe shows just the global groups, while our script search for Domain Local Groups.
+*ONE NOTE*: script can get you more groups than `net.exe`, why? Because `net.exe` shows just the **global groups**, while our script search for **Domain Local Groups**.
 
 
 ```powershell
@@ -423,11 +423,4 @@ Above 3 blocks shows you [[AD Nested Groups.canvas|AD Nested Groups]]
 
 ```
 
-```powershell
-"Cloneable Domain Controllers","Debug","Development Department","DnsUpdateProxy","Domain Admins","Domain Computers","Domain Controllers","Domain Guests","Domain Users","Enterprise Admins","Enterprise Key Admins","Enterprise Read-only Domain Controllers","Group Policy Creator Owners","Key Admins","Management Department","Protected Users","Read-only Domain Controllers","Sales Department","Schema Admins"
-```
-
-```powershell
-"Administrator","dave","Guest","iis_service","jeff","jeffadmin","jen","krbtgt","pete","stephanie"
-```
 
