@@ -392,7 +392,8 @@ CN=jen,CN=Users,DC=corp,DC=com
 Above 3 blocks shows you [[AD Nested Groups.canvas|AD Nested Groups]] 
 
 ```powershell
-
+# User enum with the script
+$user = LDAPSearch -LDAPQuery "(&(objectCategory=user)(cn=jen*))"
 ```
 
 ```powershell
