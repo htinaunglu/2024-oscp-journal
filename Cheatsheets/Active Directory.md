@@ -272,7 +272,7 @@ accountexpires                 {9223372036854775807}
 
 
 Just an another way to filter more properties!
-	
+
 ```powershell
 ## enumeration_b3i.ps1
 # Adding the name property to the filter and only print the "memberof" attribute in the nested loop
@@ -396,6 +396,124 @@ Above 3 blocks shows you [[AD Nested Groups.canvas|AD Nested Groups]]
 $user = LDAPSearch -LDAPQuery "(&(objectCategory=user)(cn=jen*))"
 ```
 
+###  PowerView
+Docs : https://powersploit.readthedocs.io/en/latest/Recon/
+
+```powershell
+# Importing Powershell
+Import-Module .\PowerView.ps1
+```
+
+```powershell
+# Obtaining domain information
+Get-NetDomain
+
+# OUTPUT
+Forest                  : corp.com
+DomainControllers       : {DC1.corp.com}
+Children                : {}
+DomainMode              : Unknown
+DomainModeLevel         : 7
+Parent                  :
+PdcRoleOwner            : DC1.corp.com
+RidRoleOwner            : DC1.corp.com
+InfrastructureRoleOwner : DC1.corp.com
+Name                    : corp.com
+
+```
+
+```powershell
+# Querying users in domain
+Get-NetUser
+
+# OUTPUT
+logoncount             : 113
+iscriticalsystemobject : True
+description            : Built-in account for administering the computer/domain
+distinguishedname      : CN=Administrator,CN=Users,DC=corp,DC=com
+objectclass            : {top, person, organizationalPerson, user}
+lastlogontimestamp     : 9/13/2022 1:03:47 AM
+name                   : Administrator
+objectsid              : S-1-5-21-1987370270-658905905-1781884369-500
+samaccountname         : Administrator
+admincount             : 1
+codepage               : 0
+samaccounttype         : USER_OBJECT
+accountexpires         : NEVER
+cn                     : Administrator
+whenchanged            : 9/13/2022 8:03:47 AM
+instancetype           : 4
+usncreated             : 8196
+objectguid             : e5591000-080d-44c4-89c8-b06574a14d85
+lastlogoff             : 12/31/1600 4:00:00 PM
+objectcategory         : CN=Person,CN=Schema,CN=Configuration,DC=corp,DC=com
+dscorepropagationdata  : {9/2/2022 11:25:58 PM, 9/2/2022 11:25:58 PM, 9/2/2022 11:10:49 PM, 1/1/1601 6:12:16 PM}
+memberof               : {CN=Group Policy Creator Owners,CN=Users,DC=corp,DC=com, CN=Domain Admins,CN=Users,DC=corp,DC=com, CN=Enterprise
+                         Admins,CN=Users,DC=corp,DC=com, CN=Schema Admins,CN=Users,DC=corp,DC=com...}
+lastlogon              : 9/14/2022 2:37:15 AM
+...
+```
+
+```powershell
+# Querying users using select statement
+Get-NetUser | select cn
+
+# OUTPUT
+cn
+--
+Administrator
+Guest
+krbtgt
+dave
+stephanie
+jeff
+jeffadmin
+iis_service
+pete
+jen
+```
+
+```powershell
+# Querying users displaying pwdlastset and lastlogon
+Get-NetUser | select cn,pwdlastset,lastlogon
+
+# OUTPUT
+cn            pwdlastset            lastlogon
+--            ----------            ---------
+Administrator 8/16/2022 5:27:22 PM  9/14/2022 2:37:15 AM
+Guest         12/31/1600 4:00:00 PM 12/31/1600 4:00:00 PM
+krbtgt        9/2/2022 4:10:48 PM   12/31/1600 4:00:00 PM
+dave          9/7/2022 9:54:57 AM   9/14/2022 2:57:28 AM
+stephanie     9/2/2022 4:23:38 PM   12/31/1600 4:00:00 PM
+jeff          9/2/2022 4:27:20 PM   9/14/2022 2:54:55 AM
+jeffadmin     9/2/2022 4:26:48 PM   9/14/2022 2:26:37 AM
+iis_service   9/7/2022 5:38:43 AM   9/14/2022 2:35:55 AM
+pete          9/6/2022 12:41:54 PM  9/13/2022 8:37:09 AM
+jen           9/6/2022 12:43:01 PM  9/13/2022 8:36:55 AM
+```
+
+```powershell
+# Querying domain groups
+Get-NetGroup | select cn
+```
+
+```powershell
+# Enumerating certain group's users
+Get-NetGroup "Sales Department" | select member
+```
+
+```powershell
+# Querying the domain computer objects
+Get-NetComputer
+```
+
+```powershell
+# Display OS and hostname
+Get-NetComputer | select operatingsystem,dnshostname
+```
+
+*It's a good idea to grab this information early in the assessment to determine the relative age of the systems and to locate potentially weak targets*
+
 ```powershell
 
 ```
@@ -424,4 +542,14 @@ $user = LDAPSearch -LDAPQuery "(&(objectCategory=user)(cn=jen*))"
 
 ```
 
+```powershell
 
+```
+
+```powershell
+
+```
+
+```powershell
+
+```
